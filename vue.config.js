@@ -13,7 +13,7 @@ module.exports = {
 	productionSourceMap: true, //生产环境是否生成SourceMap
 	devServer: {
 		open: true, //启动服务后是否打开浏览器
-		host: '192.168.1.130',
+		// host: '192.168.1.130',
 		port: 8081, //服务端口
 		https: false,
 		hotOnly: false,

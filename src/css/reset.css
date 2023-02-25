@@ -2,19 +2,24 @@ html {
     overflow-x:hidden;
     overflow-y:scroll;
     scroll-behavior: smooth;
+    /* scrollbar-width: none; */
     }
+    ::-webkit-scrollbar {display:none}
     body, dl, dt, dd, ul, ol, li, pre, form, fieldset, input, p, blockquote, th, td {
     font-weight:400;
     margin:0;
     padding:0;
     }
+    /* html::-webkit-scrollbar{
+        display: none;
+      } */
     h1, h2, h3, h4, h4, h5 {
     margin:0;
     padding:0;
     }
     body {
     background-color:#FFFFFF;
-    color:#fff;
+    color:#e2ded3;
     font-family:Helvetica,Arial,sans-serif;
     font-size:1rem;
     padding:0;

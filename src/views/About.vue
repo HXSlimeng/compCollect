@@ -1,75 +1,54 @@
 <template>
-  <div class='my_page'>
+  <div class="my_page">
     <!-- <div id="myecharts"></div> -->
+    <div style="margin: 40px auto">
+      <wl-gantt
+        :data="elementData"
+        end-date="2022-2-28"
+        start-date="2022-02-01"
+        dataType="monthAndDay"
+        :columns="columns"
+        use-real-time
+        :contextMenuOptions="contextMenuOptions"
+      ></wl-gantt>
+    </div>
   </div>
 </template>
 
 <script>
-
 export default {
   components: {},
-  data () {
+  data() {
     return {
-      linedata:[150, 230, 224, 218, 135, 147, 260],
-    }
+      linedata: [150, 230, 224, 218, 135, 147, 260],
+      elementData: [{}, {}],
+      columns: [{ type: "name", minWidth: 200, colType: "expand" }],
+      contextMenuOptions: [{ label: "任务名称", prop: "name" }],
+    };
   },
   computed: {},
   watch: {},
-  created () {
-    
-  },
-  mounted () {
-    /* let Lecharts = this.$echarts.init(document.querySelector('#myecharts'));
-    let options = {
-      animation:false,
-      xAxis: {
-        type: 'category',
-        boundaryGap: false,
-        data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
-      },
-      yAxis: {
-        type: 'value',
-        data:[0, 20, 40, 60, 80, 100]
-      },
-      series: [
-        {
-          data: this.linedata,
-          type: 'line',
-          smooth: true
-        }
-      ]
-    }
-    Lecharts.setOption(options);
-    setInterval(() => {
-      this.linedata.push( ~~(Math.random()*100));
-      this.linedata.shift();
-      Lecharts.setOption({
-        series:[{
-          data:this.linedata
-        }]
-      })
-    }, 2000); */
-    
-  },
-  beforeCreate () { }, // 生命周期 - 创建之前
-  beforeMount () { }, // 生命周期 - 挂载之前
-  beforeUpdate () { }, // 生命周期 - 更新之前
-  updated () { }, // 生命周期 - 更新之后
-  beforeDestroy () { }, // 生命周期 - 销毁之前
-  destroyed () { }, // 生命周期 - 销毁完成
-  activated () { }, // 如果页面有keep-alive缓存功能，这个函数会触发
+  created() {},
+  mounted() {},
+  beforeCreate() {}, // 生命周期 - 创建之前
+  beforeMount() {}, // 生命周期 - 挂载之前
+  beforeUpdate() {}, // 生命周期 - 更新之前
+  updated() {}, // 生命周期 - 更新之后
+  beforeDestroy() {}, // 生命周期 - 销毁之前
+  destroyed() {}, // 生命周期 - 销毁完成
+  activated() {}, // 如果页面有keep-alive缓存功能，这个函数会触发
   // 方法集合
-  methods: {
-
-  }
-}
+  methods: {},
+};
 </script>
 
-<style lang='less' scoped>
+<style lang="less" scoped>
 //@import url(); 引入公共css类
-  #myecharts{
-    height: 400px;
-    width: 600px;
-  }
+.my_page {
+  width: 100vw;
+}
+#myecharts {
+  height: 400px;
+  width: 600px;
+}
 </style>
-

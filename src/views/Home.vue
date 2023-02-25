@@ -2,10 +2,10 @@
   <div class="home" ref="topApp">
     <nav class="navbar">
       <div class="myName">
-          <div >One Dark</div>
+          <div>HXSlimeng</div>
       </div>
       <ul class="navItem" @click="showNavBar()" >
-        <a v-for="item,index in navItems" :key="index" :class="{liActive:item.active}" @click="resetActive(index)" ><li >{{item.title}}</li></a>
+        <a v-for="item,index in navItems" :key="index" :class="{liActive:item.active}" @click="resetActive(index)" ><li>{{item.title}}</li></a>
       </ul>
       <div class="menuFlow" @click="showNavBar()">
         <svg-icon icon-class="menu"></svg-icon>
@@ -28,21 +28,28 @@
       </div>
     </div>
     <div class="main">
-      <div class="firstPage">
+      <div class="firstPage snap_item">
+        <div class="wholeAva">
+           <svg-icon icon-class="leftTo" class="leftToIcon"></svg-icon>
+            <div class="avator" @click="pushAvator">
+              <img :src="require('../assets/QRcode.jpg')" alt="" >
+            </div>
+           <svg-icon icon-class="rightTo" class="rightToIcon"></svg-icon>
+        </div>
         <div class="helloWorld">
-          <h1>Hi~ 我是李孟</h1>
-          <span>——A Web Developer</span> 
+          <h1><span v-for="item,index in helloText1" :key="index" class="helloText1">{{item}}</span></h1>
+            <span v-for="item,index in helloText" :key="index" class="helloText">{{item}}</span>
+          <!-- <span>——A Web Developer</span>  -->
         </div>
       </div>
-      <div class="briefIntrod">
-          
+      <div class="briefIntrod snap_item">
           <div id="botbox">
             <div class="startTag">self-introduction</div>
             <div class="flowTitle"><svg t="1640139222394" @click="hideCode" class="icon flowCode" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3717" xmlns:xlink="http://www.w3.org/1999/xlink" width="1.1rem" height="1.1rem"><defs></defs><path d="M312.888889 995.555556c-17.066667 0-28.444444-5.688889-39.822222-17.066667-22.755556-22.755556-17.066667-56.888889 5.688889-79.644445l364.088888-329.955555c11.377778-11.377778 17.066667-22.755556 17.066667-34.133333 0-11.377778-5.688889-22.755556-17.066667-34.133334L273.066667 187.733333c-22.755556-22.755556-28.444444-56.888889-5.688889-79.644444 22.755556-22.755556 56.888889-28.444444 79.644444-5.688889l364.088889 312.888889c34.133333 28.444444 56.888889 73.955556 56.888889 119.466667s-17.066667 85.333333-51.2 119.466666l-364.088889 329.955556c-11.377778 5.688889-28.444444 11.377778-39.822222 11.377778z" p-id="3718" fill="#fff"></path></svg>
                                   <span>const </span><span> object </span> = </div>
             <div class="introdMain">
               <div class="mymessage">
-              <h3>基本信息</h3>
+              <h3>关于我</h3>
                 <section>
                     <div>{</div>
                     <div  v-for="item,index in myType" :key="index">
@@ -54,6 +61,7 @@
                 </section>
               </div>
               <div class="leftPrag">
+                
                 <section>
                 <h3 >主要技术栈</h3>
                 <p>目前主要的技术栈是vue,开发过原生微信小程序,喜欢尝试各种新技术,诸如<span class="newStack">{{newStack.join(',')}}</span>也在不断的学习当中...</p>
@@ -64,16 +72,17 @@
               </div>
             </div>
               <div class="endTag">self-introduction</div>
+
           </div>
       </div>
-      <div class="secIntrod">
+      <div class="secIntrod snap_item">
         <div id="myProj">
           <div :class="{ projs:index%2 == 0,projs1:index%2 != 0 }" v-for="item,index in projArr" :key="index" @mouseenter="openProj" @mouseleave="closeProj">
             <div class="imageForProj">
               <img :src="item.projLink" alt="" height="180" width="180">
             </div>
             <div class="linkToProj">
-              <button class="transferBtn">立即了解</button>
+              <button class="transferBtn" @click="enterProj">Go</button>
               <h2>{{item.projName}}</h2>
               <p>项目简介:{{item.projDescribe}}</p>
             </div>
@@ -82,13 +91,15 @@
           </div>
         </div>
       </div>
+      <div class="threeItem snap_item">
+
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-
 
 
 
@@ -107,14 +118,14 @@ export default {
             animation: scene1,
             trigger: ".scrollElement",
             start: "30% top",
-            end: "40% bottom",
-            scrub: 2,
+            end: "38% top",
+            scrub: 1,
         });
-    scene1.from(".projs1", { x:-1000,duration:5},0).from(".projs", { x:1000,duration:5},0)
-    .from(".shBox12",{x:400,duration:0.3})
-    .from(".shBox11",{x:-400,duration:0.3},5)
-    .from(".shBox22",{x:600,duration:0.3},5.1)
-    .from(".shBox21",{x:-600,duration:0.3},5.1)
+    !this.getMatchMedia() && scene1.from(".projs1", { x:'-50vw',duration:3},0).from(".projs", { x:'50vw',duration:3},0)
+    .from(".shBox12",{x:400,duration:0.3},3)
+    .from(".shBox11",{x:-400,duration:0.3},3)
+    .from(".shBox22",{x:600,duration:0.3},3.1)
+    .from(".shBox21",{x:-600,duration:0.3},3.1)
 
     //代码块动画
     const scene2 = this.$gsap.timeline();
@@ -134,6 +145,8 @@ export default {
 
     })
     scene2.from(".endTag",{ width:0, duration:2, ease:'steps(20)'})
+
+    // this.createWebGlElement();
 
   },
   data(){
@@ -200,7 +213,7 @@ export default {
           active:true
         },
         {
-          title:'主页',
+          title:'个人简介',
           href:'#botbox',
           active:false
         },
@@ -215,7 +228,7 @@ export default {
           active:false
         },
       ],
-      showTopBar:false,
+      showTopBar:true,
       scrollItem:[
         '.firstPage',
         '.briefIntrod',
@@ -228,7 +241,10 @@ export default {
         'typescript',
         'JavaScript'
       ],
-      newStack:['Vuetify','Vite','Gsap']
+      newStack:['Vuetify','Vite','Gsap'],
+      helloText1:'Hi~ 我是李孟',
+      helloText:'——A Web Developer',
+      T0:{}
     }
   },
   methods:{
@@ -273,8 +289,8 @@ export default {
       })
     },
     showNavBar(){
-      let matchMedia = window.matchMedia("(max-width:768px)");
-      if (!matchMedia.matches) {
+      let matchMedia = this.getMatchMedia();
+      if (!matchMedia) {
         return;
       }
       if (this.showTopBar) {
@@ -286,6 +302,9 @@ export default {
       }
       this.showTopBar = !this.showTopBar;
 
+    },
+    getMatchMedia(){
+      return window.matchMedia("(max-width:768px)").matches
     },
     scrollBehavier(){
       let param = document.querySelector('.secIntrod').offsetTop;
@@ -301,7 +320,84 @@ export default {
         this.$gsap.fromTo('.qrcode',{x:-200,opacity:0},{opacity:1,x:0})
       }
       this.showQRcode = !this.showQRcode;
+    },
+    pushAvator(){
+      let avat = document.querySelector('.avator');
+      let tween = this.$gsap.timeline();
+      document.querySelector('.leftToIcon').style.display = 'none'
+      document.querySelector('.rightToIcon').style.display = 'none'
+      if (this.getMatchMedia()) {
+        tween.to(avat,{y:'-25vh',height:'30vw',width:'30vw',borderRadius:'16vw',},0);
+        }else{
+        tween.to(avat,{x:'-40vw',y:'-25vh',height:'10vw',width:'10vw',borderRadius:'5vw',border:'0'},0);
+        }
+        tween.staggerFromTo(".helloText1", 0.5, 
+          {ease: 'back.out(1.7)', opacity: 0, bottom: -80},
+          {ease: 'back.out(1.7)', opacity: 1, bottom: 0}, 0.05)
+        tween.staggerFromTo(".helloText", 0.5, 
+          {ease: 'back.out(1.7)', opacity: 0, bottom: -80},
+          {ease: 'back.out(1.7)', opacity: 1, bottom: 0}, 0.05)
+    },
+    enterProj(){
+      this.$router.push('proj1')
+    },
+    createWebGlElement(){
+      /**
+     * 创建场景对象Scene
+     */
+    var scene = new THREE.Scene();
+    /**
+     * 创建网格模型
+     */
+    // var geometry = new THREE.SphereGeometry(60, 40, 40); //创建一个球体几何对象
+    var geometry = new THREE.BoxGeometry(100, 100, 100); //创建一个立方体几何对象Geometry
+    var material = new THREE.MeshPhongMaterial({
+      color:'red',
+      specular:0x4488ee,
+      shininess:12,
+      transparent:true
+    }); //材质对象Material
+    var mesh = new THREE.Mesh(geometry, material); //网格模型对象Mesh
+    scene.add(mesh); //网格模型添加到场景中
+    /**
+     * 光源设置
+     */
+    //点光源
+    var point = new THREE.PointLight(0xffffff);
+    point.position.set(400, 200, 300); //点光源位置
+    scene.add(point); //点光源添加到场景中
+    //环境光
+    var ambient = new THREE.AmbientLight(0x444444);
+    scene.add(ambient);
+    // console.log(scene)
+    // console.log(scene.children)
+    /**
+     * 相机设置
+     */
+    var width = window.innerWidth; //窗口宽度
+    var height = window.innerHeight; //窗口高度
+    var k = width / height; //窗口宽高比
+    var s = 200; //三维场景显示范围控制系数，系数越大，显示的范围越大
+    //创建相机对象
+    var camera = new THREE.OrthographicCamera(-s * k, s * k, s, -s, 1, 1000);
+    camera.position.set(200, 300, 200); //设置相机位置
+    camera.lookAt(scene.position); //设置相机方向(指向的场景对象)
+    /**
+     * 创建渲染器对象
+     */
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(width, height);//设置渲染区域尺寸
+    renderer.setClearColor(0xb9d3ff, 1); //设置背景颜色
+    document.body.appendChild(renderer.domElement); //body元素中插入canvas对象
+    //执行渲染操作   指定场景、相机作为参数
+    renderer.render(scene,camera);//执行渲染操作
+    var controls = new THREE.OrbitControls(camera,renderer.domElement);//创建控件对象
+    controls.addEventListener('change', () => {renderer.render(scene,camera)});//监听鼠标、键盘事件
+    //坐标辅助线
+    /* var axisHelper = new THREE.AxesHelper(250);
+    scene.add(axisHelper); */
     }
+    
   },
   
   computed:{
@@ -320,9 +416,8 @@ export default {
 </script>
 <style lang="less" scoped>
 @borderRadiu:20px;
-@boxShadow: 9px 9px 18px #262c3e,
-    -9px -9px 18px #30384e;
-@bgcolor:#2B3246;
+@boxShadow:rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+@bgcolor:#363434;
 @maxWidth:~"(max-width:768px)";
 @keyframes bottomLine {
   from{
@@ -332,17 +427,23 @@ export default {
     width: 100%;
   }
 }
-
+.snap_item{
+  scroll-snap-align: center;
+}
 .home{
   display: flex;
   flex-direction: column;
 }
 .navbar{
   position: fixed;
-  width: 100%;
+  width: 100vw;
   display: flex;
   align-items: center;
-  background-color: rgba(32, 35, 42, 1);
+  // background-color: rgba(32, 35, 42, .5);
+  background: rgba(255, 255, 255, 0.2);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    box-shadow:inset 0 0 6px rgba(255, 255, 255, 0.2);
   z-index: 999;
   height: 10vh;
   .navItem{
@@ -356,7 +457,10 @@ export default {
       top: 11vh;
       right: -200px;
       z-index: 999;
-      background-color: rgba(32, 35, 42, 1);
+      background:rgba(255, 255, 255, 0.2);
+      -webkit-backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);
+      box-shadow:inset 0 0 6px rgba(255, 255, 255, 0.2);
     }
     li{
       height: 100%;
@@ -379,6 +483,9 @@ export default {
       &:hover{
         color: rgb(97, 218, 251);
         &:after{
+          @media @maxWidth {
+            display: none;
+          }
           content: '';
           display: block;
           height: 3px;
@@ -414,7 +521,6 @@ export default {
       @media @maxWidth {
         display: unset;
       }
-
     }
   }
 
@@ -502,6 +608,12 @@ export default {
     .leftPrag{
       margin: 20px;
       height: 50vh;
+      .myOwnPic{
+        opacity: .5;
+        position: absolute;
+        bottom: 0px;
+        right: 0px;
+      }
       section{
           // height: 30vh;
           font-family: PingFangSC-Ultralight, sans-serif;
@@ -562,6 +674,14 @@ export default {
     border-right: .1rem solid #666;
   }
 }
+@keyframes btnoutline {
+            0%{
+              outline: solid 2px #ff6d24;
+            }
+            100%{
+              outline: solid 5px #ff6d24;
+            }
+          }
   .endTag{
     .startTag();
      max-width: 13.3rem;
@@ -647,7 +767,10 @@ export default {
   }
 .main{
   display: flex;
+  overflow-y: auto;
   flex-direction: column;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
   .firstPage{
     width: 100vw;
     height: 100vh;
@@ -655,37 +778,110 @@ export default {
     display: flex;
     align-items: center;
     justify-content: center;
-    .helloWorld{
-      
-      text-align: center;
-    }
-    h1{
-      font-size: 4rem;
-      color: #fff4e3;
-      font-weight: 1;
-      @media @maxWidth {
-        font-size: 2rem;
+    @keyframes avatorShadow{
+      0%{
+        box-shadow: 0px 0px 1vw;
+      }
+      50%{
+        box-shadow: 0px 0px 3vw;
+      }
+      100%{
+        box-shadow: 0px 0px 1vw;
       }
     }
-    span{
+    @keyframes leftTo {
+      50%{
+        transform: translateX(-1vw);
+        opacity: .5;
+      }
+      100%{
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    @keyframes rightTo {
+      50%{
+        transform: translateX(1vw);
+        opacity: .5;
+      }
+      100%{
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    .wholeAva{
+      display: flex;
+      position: absolute;
+      z-index: 2;
+      align-items: center;
+      .leftToIcon{
+        animation: leftTo 1.5s ease infinite;
+      }
+      .rightToIcon{
+        animation: rightTo 1.5s ease infinite;
+      }
+      .avator{
+          width: 20vw;
+          height: 20vw;
+          margin: 0 2vw;
+          border-radius: 11vw;
+          border: solid 1vw #857671;
+          overflow: hidden;
+          animation: avatorShadow 1.5s ease infinite;
+          @media @maxWidth {
+            width: 30vw;
+            height: 30vw;
+             border-radius: 16vw;
+          }
+          &:hover{
+            box-shadow: 0px 0px 3vw #aa530e;
+            animation: none;
+          }
+          img{
+            width: inherit;
+            height: inherit;
+          }
+      }
+    }
+    .helloWorld{
+      text-align: center;
+      h1{
+        .helloText1{
+          font-size: 4rem;
+          color: #fff4e3;
+          font-weight: 1;
+          position: relative;
+          opacity: 0;
+          @media @maxWidth {
+            font-size: 2rem;
+          }
+        }
+      }
+    .helloText{
       color: #ffa45c;
+      position: relative;
+      opacity: 0;
+      /* span{
+        display: block;
+      } */
+    }
     }
   }
   .briefIntrod{
     padding-top: 10vh;
   }
   .secIntrod{
-    margin: auto;
-    padding: 20px;
-    position: relative;
-    width: 90vw;
-    overflow: hidden;
+    width: 100vw;
+     padding-top: 10vh;
+     overflow: hidden;
     #myProj{
-      margin: auto;
-      margin-top: 10vh;
       padding-top: 3vh;
-      width: 80vw;
-      
+      padding-bottom: 3vh;
+      width: 90vw;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0 auto;
       .projs{
         width: 80vw;
         height: 22vh;
@@ -730,23 +926,33 @@ export default {
           margin: 15px;
           display: flex;
           flex-direction: column;
+          
           button{
             border: none;
             outline: none;
             width: 150px;
             height: 35px;
             font-size: 1.1rem;
-            color: white;
-            background-color: #61AFEF;
+            color: #e2ded3;
+            background-color: #ff6d24;
             border-radius: 5px;
             position: relative;
             top: 10px;
             opacity: 0;
             cursor: pointer;
+            transition: .3s;
+            &:hover{
+              color: #ff6d24;
+              background: #e2ded3;
+              transition: .3s;
+              outline: solid 5px #ff6d24;
+              
+            }
           }
           h2{
-            color: white;
             margin-top: 10px;
+            color: #d9dad7;
+
           }
           p{
             margin-top: 10px;

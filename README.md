@@ -1,4 +1,4 @@
-# testproject
+# HXSlimeng
 
 ## Project setup
 ```

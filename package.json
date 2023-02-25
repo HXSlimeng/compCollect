@@ -1,5 +1,5 @@
 {
-  "name": "testproject",
+  "name": "HXSlimeng",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -13,10 +13,13 @@
     "axios": "^0.24.0",
     "core-js": "^3.6.5",
     "echarts": "^5.2.2",
+    "element-ui": "^2.15.8",
     "gsap": "^3.9.0",
     "jsplumb": "^2.15.6",
+    "three": "^0.136.0",
     "vue": "^2.6.11",
-    "vue-router": "^3.2.0"
+    "vue-router": "^3.2.0",
+    "wl-gantt": "^1.0.6"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.5.0",
